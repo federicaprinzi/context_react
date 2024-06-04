@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { LanguageContext } from "./LanguageContext";
 
 const Clock = () => {
   const [currentTime, setCurrentTime] = useState(new Date());
@@ -15,7 +16,14 @@ const Clock = () => {
     };
   }, []);
 
-  return <h2>Ora esatta: {currentTime.toLocaleTimeString()} </h2>;
+  const language = useContext(LanguageContext);
+
+  return (
+    <h2>
+      {language === "en" ? "Exact Time:" : "Ora Esatta:"}
+      {currentTime.toLocaleTimeString()}
+    </h2>
+  );
 };
 
 export default Clock;
